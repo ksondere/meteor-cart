@@ -1,0 +1,3 @@
+[submodule "simplecart-js"]
+	path = simplecart-js
+	url = https://github.com/ksondere/simplecart-js.git
