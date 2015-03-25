@@ -1,0 +1,48 @@
+<head>
+  <title>meteor-cart</title>
+</head>
+
+<body>
+  <h1>Wow...what is going on here!</h1>
+  {{> hello}}
+  <div id="container">
+      <div class="simpleCart_shelfItem">
+          <h2 class="item_name"> Awesome T-shirt </h2>
+          <p> <input value="1" class="item_Quantity" type="text"><br>
+              <span class="item_price">$35.99</span><br>
+              <a class="item_add" href="javascript:;"> Add to Cart </a>
+          </p>
+          <span class="simpleCart_quantity"></span> items - <span class="simpleCart_total">Total</span>
+          <a href="javascript:;" class="simpleCart_checkout">Checkout</a>
+          <a href="javascript:;" class="simpleCart_empty">Empty Cart</a>
+      </div>
+  </div>
+  <script type="text/javascript">
+      function onVisaCheckoutReady(){
+          V.init( {
+              apikey: "17SOX33VCFW1A9FVJI4J13tvR2oX1EzHzYP5exFIuA1Ej1XyQ",
+              paymentRequest:{
+                  currencyCode: "USD",
+                  total: "10.00"
+              }
+          });
+          V.on("payment.success", function(payment)
+          {alert(JSON.stringify(payment)); });
+          V.on("payment.cancel", function(payment)
+          {alert(JSON.stringify(payment)); });
+          V.on("payment.error", function(payment, error)
+          {alert(JSON.stringify(error)); });
+      }
+  </script>
+  <img alt="Visa Checkout" class="v-button" role="button"
+       src="https://sandbox.secure.checkout.visa.com/wallet-services-web/xo/button.png"/>
+
+  <script type="text/javascript"
+          src="https://sandbox-assets.secure.checkout.visa.com/checkout-widget/resources/js/integration/v1/sdk.js">
+  </script>
+</body>
+
+<template name="hello">
+  <button>Click Me</button>
+  <p>You've pressed the button {{counter}} times.</p>
+</template>
